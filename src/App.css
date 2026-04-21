@@ -521,6 +521,72 @@ h3,
   justify-items: center;
 }
 
+.page-hero-shop-cta {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 0.5rem;
+  padding: 0.35rem 0.15rem 0.2rem;
+  text-decoration: none;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.page-hero-shop-cta:hover {
+  color: var(--text-muted);
+  border-bottom-color: rgba(0, 0, 0, 0.28);
+}
+
+.page-hero-shop-cta-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.page-hero-shop-arrow,
+.pastry-dolce-amore-arrow {
+  display: flex;
+  align-items: center;
+  will-change: transform;
+}
+
+.page-hero-shop-arrow svg,
+.pastry-dolce-amore-arrow svg {
+  display: block;
+}
+
+.pastry-dolce-amore-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1.05rem;
+  padding: 0.35rem 0.15rem 0.2rem;
+  text-decoration: none;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.pastry-dolce-amore-cta:hover {
+  color: var(--text-muted);
+  border-bottom-color: rgba(0, 0, 0, 0.28);
+}
+
+.pastry-dolce-amore-cta-label {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .contact-page {
   padding-top: 10rem;
 }
@@ -696,6 +762,10 @@ h3,
   color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.7;
+}
+
+.page-copy p + p {
+  margin-top: 1.1rem;
 }
 
 .page-copy {
@@ -1620,6 +1690,18 @@ h3,
   opacity: 0;
 }
 
+.pastry-reveal {
+  transform: translateY(28px);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pastry-reveal {
+    transform: none;
+    opacity: 1;
+  }
+}
+
 .curated-gallery {
   width: min(1200px, 100%);
   margin: 2.4rem auto 0;
@@ -1651,6 +1733,474 @@ h3,
 .restaurant-room-gallery .gallery-card img {
   aspect-ratio: 16 / 8.5;
   border-radius: 0.9rem;
+}
+
+.pastry-dolce-amore {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.pastry-dolce-amore-title {
+  margin: 0 0 1.15rem;
+  font-size: clamp(2rem, 3.4vw, 3.1rem);
+  line-height: 1.08;
+  font-weight: 400;
+}
+
+.pastry-dolce-amore-copy p {
+  margin: 0;
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.pastry-dolce-amore-media {
+  overflow: hidden;
+  border-radius: 0.65rem;
+  background: #f2eee7;
+}
+
+.pastry-dolce-amore-media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.pastry-her-majesty {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+
+.pastry-her-majesty-title {
+  margin: 0 0 1.15rem;
+  font-size: clamp(1.85rem, 3.2vw, 2.85rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-her-majesty-copy p {
+  margin: 0;
+  max-width: 560px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.pastry-her-majesty-copy p + p {
+  margin-top: 1.1rem;
+}
+
+.pastry-her-majesty-media {
+  overflow: hidden;
+  border-radius: 0.65rem;
+  background: #f2eee7;
+}
+
+.pastry-her-majesty-media img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.pastry-playful-dessert {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pastry-playful-dessert-copy {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pastry-playful-dessert-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.75rem, 3vw, 2.65rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-playful-dessert-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.pastry-playful-dessert-media {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: min(520px, 88vw);
+  border-radius: 0.65rem;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+.pastry-playful-dessert-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.pastry-playful-dessert-tagline {
+  margin: 1.65rem auto 0;
+  max-width: min(640px, 92vw);
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.35rem, 2.6vw, 2.05rem);
+  font-weight: 400;
+  line-height: 1.28;
+  color: var(--text-main);
+}
+
+.pastry-tris-horizontal.horizontal-section {
+  border-top: 1px solid var(--border-color);
+}
+
+.pastry-tris-horizontal .pastry-tris-slide-body {
+  margin-bottom: 0;
+}
+
+@media (min-width: 769px) {
+  .pastry-tris-horizontal.horizontal-section {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+  }
+
+  .pastry-tris-horizontal .item-text p {
+    font-size: 1.08rem;
+    line-height: 1.65;
+    max-width: 28rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .pastry-tris-horizontal.horizontal-section {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.pastry-monoporzioni {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pastry-monoporzioni-copy {
+  max-width: 720px;
+  text-align: center;
+}
+
+.pastry-monoporzioni-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-monoporzioni-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.pastry-monoporzioni-copy p + p {
+  margin-top: 1.1rem;
+}
+
+.pastry-monoporzioni-hero {
+  margin-top: 2rem;
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+.pastry-monoporzioni-hero img {
+  display: block;
+  width: 100%;
+  height: min(92vh, 1200px);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 768px) {
+  .pastry-monoporzioni {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-monoporzioni-copy {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pastry-monoporzioni-copy p {
+    text-align: left;
+  }
+
+  .pastry-monoporzioni-hero {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .pastry-monoporzioni-hero img {
+    height: min(72vh, 720px);
+  }
+}
+
+.pastry-cioccolatini {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pastry-cioccolatini-copy {
+  max-width: 720px;
+  text-align: center;
+}
+
+.pastry-cioccolatini-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-cioccolatini-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .pastry-cioccolatini {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-cioccolatini-copy {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pastry-cioccolatini-copy p {
+    text-align: left;
+  }
+}
+
+.pastry-chocolate-letter {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pastry-chocolate-letter-copy {
+  max-width: 720px;
+  text-align: center;
+}
+
+.pastry-chocolate-letter-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-chocolate-letter-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.pastry-chocolate-letter-copy p + p {
+  margin-top: 1rem;
+}
+
+.pastry-chocolate-letter-gallery {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: min(1200px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.65rem, 1.8vw, 1.1rem);
+  align-items: stretch;
+}
+
+.pastry-chocolate-letter-figure {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+.pastry-chocolate-letter-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 768px) {
+  .pastry-chocolate-letter {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-chocolate-letter-copy {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pastry-chocolate-letter-copy p {
+    text-align: left;
+  }
+
+  .pastry-chocolate-letter-gallery {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
+
+.pastry-solo-per-voi {
+  width: min(1200px, 100%);
+  margin: 2.4rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pastry-solo-per-voi-copy {
+  max-width: 720px;
+  text-align: center;
+}
+
+.pastry-solo-per-voi-title {
+  margin: 0 0 1.1rem;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.12;
+  font-weight: 400;
+}
+
+.pastry-solo-per-voi-copy p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  text-align: center;
+}
+
+.pastry-solo-per-voi-gallery {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: min(1100px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pastry-solo-per-voi-figure {
+  margin: 0;
+  padding: 0;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: var(--bg-color);
+}
+
+.pastry-solo-per-voi-figure img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+}
+
+.pastry-solo-per-voi-badge {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.pastry-solo-per-voi-badge img {
+  display: block;
+  width: min(280px, 72vw);
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .pastry-solo-per-voi {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-solo-per-voi-copy {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pastry-solo-per-voi-copy p {
+    text-align: left;
+  }
+
+  .pastry-solo-per-voi-gallery {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
 }
 
 .paolo-icon-card {
@@ -2936,6 +3486,44 @@ h3,
   .curated-gallery {
     grid-template-columns: 1fr;
     margin-top: 1.8rem;
+  }
+
+  .pastry-dolce-amore {
+    grid-template-columns: 1fr;
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-dolce-amore-copy p {
+    max-width: none;
+  }
+
+  .pastry-her-majesty {
+    grid-template-columns: 1fr;
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-her-majesty-copy p {
+    max-width: none;
+  }
+
+  .pastry-playful-dessert {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+  }
+
+  .pastry-playful-dessert-copy {
+    max-width: none;
+    text-align: left;
+  }
+
+  .pastry-playful-dessert-copy p {
+    text-align: left;
+  }
+
+  .pastry-playful-dessert-media {
+    max-width: min(420px, 100%);
   }
 
   .shop-layout {

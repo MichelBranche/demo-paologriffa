@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Lenis from 'lenis'
 import gsap from 'gsap'
@@ -85,11 +85,13 @@ const sectionContent = {
   },
   pastry: {
     label: 'Pasticceria',
-    title: 'Pasticceria contemporanea firmata Paolo Griffa',
-    description:
-      "Monoporzioni, dessert al piatto e creazioni stagionali: equilibrio tra tecnica, estetica e gusto in ogni servizio.",
-    image: '/images/stella/hero-sala.png',
-    alt: "Assaggi di pasticceria d'autore in sala",
+    title: 'Dalla semplicità, nascono grandi idee di gusto',
+    description: [
+      'Creare un dolce è una magica e ragionata alchimia, un delicato rapporto tra gli ingredienti, che permette ai sapori di avventurarsi verso territori inaspettati.',
+      "Magia e scienza si mescolano alla voglia di giocare di Paolo Griffa, tecnica e divertimento al servizio dell'arte pasticcera. Al Caffè Nazionale potrete gustare i nostri dolci nel dehors, ma anche portarli a casa o regalarli, ordinandoli dal nostro negozio con consegne in tutto il mondo.",
+    ],
+    image: '/images/pasticceria/dolci/solo-per-voi-2-1536x1020.jpg',
+    alt: 'Monoporzioni Solo per voi',
     stats: ['Monoporzioni stagionali', 'Laboratorio in evoluzione continua'],
     manifesto:
       "Linee pulite, dolcezza controllata, contrasti netti. La pasticceria diventa un racconto visivo con un'identita precisa.",
@@ -105,21 +107,123 @@ const sectionContent = {
     ],
     gallery: [
       {
-        image:
-          'https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1400&auto=format&fit=crop',
-        alt: 'Dessert al piatto contemporaneo',
+        image: '/images/pasticceria/dolci/semplicta-2.jpg',
+        alt: 'Creazioni pasticceria Semplicità',
       },
       {
-        image:
-          'https://images.unsplash.com/photo-1483695028939-5bb13f8648b0?q=80&w=1400&auto=format&fit=crop',
-        alt: 'Composizione di dessert stagionali',
+        image: '/images/pasticceria/dolci/semplicita-1-1536x1025.jpg',
+        alt: 'Dessert di pasticceria contemporanea',
       },
       {
-        image:
-          'https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?q=80&w=1400&auto=format&fit=crop',
-        alt: 'Monoporzioni moderne',
+        image: '/images/pasticceria/dolci/semplicita-3-1536x1025.jpg',
+        alt: 'Dolci di pasticceria contemporanea',
       },
     ],
+    dolceAmore: {
+      titleLine1: 'Un dolce amore',
+      titleLine2: 'non si scorda mai',
+      body: 'Paolo Griffa ha iniziato la sua carriera nel mondo della cucina proprio dai dolci. Ne conosce le regole e come scomporle per innovare. La sua è una ricerca costante di tecnica, bontà e creatività, con una grande attenzione per i dettagli. Così si instaura un intreccio di contaminazioni che innalzano le sue creazioni, una matematica costanza, condita con un pizzico di voglia di giocare, tipica di chi guarda al mondo con meraviglia.',
+      image: '/images/pasticceria/griffa/dolce-amore.jpg',
+      imageAlt: 'Creazioni dolci di Paolo Griffa',
+    },
+    herMajestyCake: {
+      title: 'Her Majesty: The Cake',
+      paragraphs: [
+        'Una torta è sempre una torta, ma a volte può essere davvero altro.',
+        "Un dolce classico che reinterpretiamo ogni volta per mantenere tutte quelle sensazioni che ci riportano ad essere bambini e poi stupirci con note inaspettate che non sapremmo codificare. Un misto di conosciuto e voglia di scoprire da portare a casa e condividere con chi amiamo. D'altronde i dolci sono un gesto d'amore, un monumento alle ricorrenze importanti da celebrare.",
+      ],
+      image: '/images/pasticceria/dolci/torta-cioccolato.jpg',
+      imageAlt: 'Torta al cioccolato',
+    },
+    playfulDessert: {
+      title: 'Non si gioca col cibo, tranne che da noi',
+      body: "Ce lo dicono fin da piccoli. Ma ora siamo cresciuti e non vediamo l'ora di vedervi sfidare a casa o nel nostro dehors, con un dolce realizzato in collaborazione con i grandi artigiani della Valle d'Aosta. Qualcuno chiede il Bis, noi serviamo il Tris, una sfida ludica ed una ancor più grande alle regole della tavola e della pasticceria, per provare un nuovo modo di concepire il dolce in compagnia. Un manufatto creato con amore e tutta la voglia di sperimentare una cucina ludica di cui Paolo Griffa è da sempre portabandiera.",
+      image: '/images/pasticceria/stuff/xoxo-2046x2048.png',
+      imageAlt: 'Dolce e gioco: collaborazione con artigiani valdostani',
+      afterImageTitle:
+        'Quando il gioco si fa duro, i duri cominciano a mangiare',
+      trisSlides: [
+        {
+          id: 'tris-1',
+          label: 'Passo 1',
+          body: 'Aprite la confezione e scegliete le vostre pedine. Disponetele su un tavolo. Resistete all’impulso di mangiarle.',
+          image: '/images/pasticceria/dolci/paolo-griffa-tris-1.jpg',
+          alt: 'Tris Paolo Griffa: pedine e confezione',
+        },
+        {
+          id: 'tris-2',
+          label: 'Passo 2',
+          body: 'A turno tentate di creare una fila di tre “X” o di “O” in orizzontale, verticale e diagonale. Resistete e continuate a non mangiarle.',
+          image: '/images/pasticceria/dolci/paolo-griffa-tris-2.jpg',
+          alt: 'Tris Paolo Griffa: gioco in corso',
+        },
+        {
+          id: 'tris-3',
+          label: 'Passo 3',
+          body: 'Chi vince facendo “Tris”, potrà godere dell’agognata vittoria e mangiare per primo. Chi perde dovrà ancora attendere per mangiare.',
+          image: '/images/pasticceria/dolci/paolo-griffa-tris-3.jpg',
+          alt: 'Tris Paolo Griffa: vittoria',
+        },
+      ],
+    },
+    monoporzioniShowcase: {
+      title: 'Monoporzioni, piccole fuori, giganti nel gusto',
+      paragraphs: [
+        'Tutto il sapore di un dolce di alta pasticceria in un formato così piccolo da essere portato ovunque. Una monoporzione è come un raro gioiello, perfetto nel suo insieme e contenuto in uno scrigno facile da trasportare. Al Caffè Nazionale ne creiamo sempre di diversi, seguendo la voglia di sperimentare dello chef.',
+        'Così ogni giorno si può scoprire qualcosa di nuovo e lasciarsi stupire dai multigusti delle nostre monoporzioni.',
+      ],
+      image: '/images/pasticceria/pasticcini/collage-prodotti-scaled.jpg',
+      imageAlt: 'Collage monoporzioni e prodotti della pasticceria',
+    },
+    cioccolatiniShowcase: {
+      title: 'Cioccolatini, piccole pillole di felicità',
+      body: 'Il cioccolatino è la forma più piccola di piacere che possa esistere. Un mondo in miniatura attorno al quale orbitano galassie di gusti differenti. Un cioccolatino può alleviare il peso di una giornata pesante, donare felicità agli amici o far sbocciare un amore. Per qualunque occasione abbiamo la giusta pillola, una serie di gusti appositamente studiati per curare ogni stato d’animo e arrivare al cuore, oltre che al palato, senza bisogno di alcuna prescrizione.',
+    },
+    chocolateLetter: {
+      title: 'Una lettera d’amore, al cioccolato',
+      paragraphs: [
+        'Tutti amano qualcuno e tutti amano la cioccolata. Per celebrare questo assunto abbiamo trasformato le nostre barrette in lettere da personalizzare e donare.',
+        'Sei varianti, provenienti da ogni angolo del globo, ognuna con proprie qualità organolettiche, arricchite dall’arte pasticcera dello chef.',
+        'Per provarle tutte, abbiamo creato uno scrigno multiorigine, così da scoprire ogni più piccola sfumatura di un dolce da riscoprire e reinventare.',
+        'From us, from you, to all…with chocolove.',
+      ],
+      gallery: [
+        {
+          image: '/images/pasticceria/cioccolato/barra-cioccolato.jpg',
+          alt: 'Barretta di cioccolato',
+        },
+        {
+          image: '/images/pasticceria/stuff/lettera-varias.jpg',
+          alt: 'Lettere di cioccolato, varianti',
+        },
+        {
+          image: '/images/pasticceria/stuff/lettera-singola.jpg',
+          alt: 'Lettera di cioccolato singola',
+        },
+      ],
+    },
+    soloPerVoiDaily: {
+      title: 'Preparati ogni giorno solo per voi',
+      body: 'Ogni mattina selezioniamo i migliori ingredienti, come il burro e la frutta più fresca, per sfornare dolci creazioni preparate sul momento. I prodotti del forno lievitano tutta la notte, per essere non solo più buoni ma anche digeribili. Seguiamo il ciclo della natura e il meglio che offrono le stagioni e sperimentiamo sempre nuovi gusti e forme particolari. Così nascono i nostri Specials che affianchiamo ai grandi classici.',
+      gallery: [
+        {
+          image: '/images/pasticceria/pasticcini/solo-per-voi-1.jpg',
+          alt: 'Creazioni Solo per voi',
+        },
+        {
+          image: '/images/pasticceria/dolci/coccola-1.jpg',
+          alt: 'Dolci da forno Coccola',
+        },
+        {
+          image: '/images/pasticceria/pasticcini/solo-per-voi-3.jpg',
+          alt: 'Selezione Solo per voi',
+        },
+      ],
+      gamberoBadge: {
+        image: '/images/pasticceria/logo/gambero-rosso-2.png',
+        alt: 'Riconoscimento Gambero Rosso',
+      },
+    },
   },
   restaurant: {
     label: 'Ristorante',
@@ -296,6 +400,8 @@ const sectionContent = {
 function SectionPage({ section }) {
   const content = sectionContent[section] ?? sectionContent.coffee
   const isRestaurant = section === 'restaurant'
+  const showHeroShopCta = !isRestaurant && section !== 'shop'
+  const lenisRef = useRef(null)
   const today = useMemo(() => normalizeDate(new Date()), [])
   const [selectedDate, setSelectedDate] = useState(today)
   const [viewDate, setViewDate] = useState(
@@ -323,6 +429,19 @@ function SectionPage({ section }) {
       setSelectedTime('')
     }
   }, [selectedTime, timeSlots])
+
+  const refreshScrollMetrics = useCallback(() => {
+    requestAnimationFrame(() => {
+      lenisRef.current?.resize()
+      ScrollTrigger.refresh()
+    })
+  }, [])
+
+  useEffect(() => {
+    if (section !== 'pastry') return undefined
+    const id = window.setTimeout(refreshScrollMetrics, 400)
+    return () => window.clearTimeout(id)
+  }, [section, refreshScrollMetrics])
 
   const changeMonth = (offset) => {
     setViewDate(
@@ -409,6 +528,7 @@ function SectionPage({ section }) {
       smoothWheel: true,
       smoothTouch: false,
     })
+    lenisRef.current = lenis
 
     lenis.on('scroll', ScrollTrigger.update)
     const tickerCallback = (time) => lenis.raf(time * 1000)
@@ -435,6 +555,35 @@ function SectionPage({ section }) {
         },
       })
     })
+
+    const prefersReducedMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (section === 'pastry' && !prefersReducedMotion) {
+      gsap.utils.toArray('[data-pastry-animate]').forEach((block) => {
+        const targets = block.querySelectorAll('.pastry-reveal')
+        if (!targets.length) return
+        gsap.fromTo(
+          targets,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.88,
+            ease: 'power3.out',
+            stagger: 0.09,
+            scrollTrigger: {
+              trigger: block,
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+          },
+        )
+      })
+    } else if (section === 'pastry' && prefersReducedMotion) {
+      gsap.set('.pastry-reveal', { clearProps: 'all' })
+    }
 
     if (isRestaurant) {
       const bookingCard = document.querySelector('.restaurant-booking-card')
@@ -575,10 +724,132 @@ function SectionPage({ section }) {
       },
     })
 
+    const trisSection = document.querySelector('.pastry-tris-horizontal')
+    const trisItems = trisSection
+      ? gsap.utils.toArray(trisSection.querySelectorAll('.horizontal-item'))
+      : []
+    const isDesktopWidth = window.innerWidth > 768
+    const canUseTrisHorizontal =
+      isDesktopWidth && trisSection && trisItems.length > 1
+    const trisScrollTween = canUseTrisHorizontal
+      ? gsap.to(trisItems, {
+          xPercent: -100 * (trisItems.length - 1),
+          ease: 'none',
+          scrollTrigger: {
+            trigger: trisSection,
+            pin: true,
+            scrub: 1,
+            snap: 1 / (trisItems.length - 1),
+            end: () => `+=${trisSection.offsetWidth * 1.5}`,
+          },
+        })
+      : null
+
+    if (trisScrollTween) {
+      gsap.utils.toArray('.pastry-tris-horizontal .parallax-img').forEach((img) => {
+        gsap.fromTo(
+          img,
+          { objectPosition: '0% 50%' },
+          {
+            objectPosition: '100% 50%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              containerAnimation: trisScrollTween,
+              start: 'left right',
+              end: 'right left',
+              scrub: true,
+            },
+          },
+        )
+      })
+    } else if (trisItems.length && isDesktopWidth) {
+      gsap.utils.toArray('.pastry-tris-horizontal .parallax-img').forEach((img) => {
+        gsap.fromTo(
+          img,
+          { yPercent: -4 },
+          {
+            yPercent: 6,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.closest('.horizontal-item'),
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        )
+      })
+    }
+
+    trisItems.forEach((item, index) => {
+      const revealTargets = item.querySelectorAll('.slide-reveal')
+      const tl = gsap.timeline({ paused: true })
+      tl.to(revealTargets, {
+        y: 0,
+        opacity: 1,
+        duration: 0.75,
+        ease: 'power3.out',
+        stagger: 0.12,
+      })
+
+      if (trisScrollTween) {
+        ScrollTrigger.create({
+          trigger: item,
+          containerAnimation: trisScrollTween,
+          start: 'left center+=160',
+          end: 'right center-=80',
+          onEnter: () => tl.play(),
+          onEnterBack: () => tl.play(),
+          onLeaveBack: () => tl.pause(0),
+        })
+      } else if (isDesktopWidth) {
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 80%',
+          onEnter: () => tl.play(),
+          onEnterBack: () => tl.play(),
+          onLeaveBack: () => tl.pause(0),
+        })
+      } else {
+        gsap.set(revealTargets, { y: 0, opacity: 1, clearProps: 'transform' })
+      }
+
+      if (index === 0) {
+        tl.play(0)
+      }
+    })
+
     ScrollTrigger.refresh()
 
+    if (section === 'pastry') {
+      lenis.resize()
+    }
+
+    const ctaArrowTweens = []
+    const startCtaArrowLoops = () => {
+      gsap.utils.toArray('.cta-bounce-arrow').forEach((el) => {
+        gsap.set(el, { x: 0 })
+        ctaArrowTweens.push(
+          gsap.to(el, {
+            x: 7,
+            duration: 0.85,
+            ease: 'power1.inOut',
+            repeat: -1,
+            yoyo: true,
+            overwrite: 'auto',
+          }),
+        )
+      })
+    }
+
+    const ctaArrowsTimer = window.setTimeout(startCtaArrowLoops, 0)
+
     return () => {
+      window.clearTimeout(ctaArrowsTimer)
       window.removeEventListener('scroll', onScroll)
+      ctaArrowTweens.forEach((tw) => tw.kill())
+      lenisRef.current = null
       lenis.destroy()
       gsap.ticker.remove(tickerCallback)
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
@@ -610,7 +881,15 @@ function SectionPage({ section }) {
             <div className="page-copy editorial-frame">
               <span className="label editor-reveal">{content.label}</span>
               <h1 className="editor-reveal">{content.title}</h1>
-              <p className="editor-reveal">{content.description}</p>
+              {Array.isArray(content.description) ? (
+                content.description.map((paragraph, index) => (
+                  <p key={index} className="editor-reveal">
+                    {paragraph}
+                  </p>
+                ))
+              ) : (
+                <p className="editor-reveal">{content.description}</p>
+              )}
               <div className="page-stats">
                 {content.stats.map((entry) => (
                   <span className="editor-reveal" key={entry}>
@@ -622,6 +901,23 @@ function SectionPage({ section }) {
             <div className="page-media editorial-frame editor-reveal">
               <img src={content.image} alt={content.alt} />
             </div>
+            {showHeroShopCta && (
+              <Link className="page-hero-shop-cta" to="/shop">
+                <span className="page-hero-shop-cta-label">Shop</span>
+                <span className="page-hero-shop-arrow cta-bounce-arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="22" height="22">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.65"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M5 12H19M14 7l5 5-5 5"
+                    />
+                  </svg>
+                </span>
+              </Link>
+            )}
           </>
         )}
       </section>
@@ -1061,6 +1357,204 @@ function SectionPage({ section }) {
               <img src={photo.image} alt={photo.alt} loading="lazy" />
             </article>
           ))}
+        </section>
+      )}
+
+      {section === 'pastry' && content.dolceAmore && (
+        <section
+          className="pastry-dolce-amore editorial-frame"
+          data-pastry-animate
+        >
+          <div className="pastry-dolce-amore-copy">
+            <h2 className="pastry-dolce-amore-title pastry-reveal">
+              {content.dolceAmore.titleLine1}
+              <br />
+              {content.dolceAmore.titleLine2}
+            </h2>
+            <p className="pastry-reveal">{content.dolceAmore.body}</p>
+            <Link className="pastry-dolce-amore-cta pastry-reveal" to="/paolo-griffa">
+              <span className="pastry-dolce-amore-cta-label">Paolo Griffa</span>
+              <span className="pastry-dolce-amore-arrow cta-bounce-arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.65"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12H19M14 7l5 5-5 5"
+                  />
+                </svg>
+              </span>
+            </Link>
+          </div>
+          <div className="pastry-dolce-amore-media pastry-reveal">
+            <img
+              src={content.dolceAmore.image}
+              alt={content.dolceAmore.imageAlt}
+              loading="lazy"
+            />
+          </div>
+        </section>
+      )}
+
+      {section === 'pastry' && content.herMajestyCake && (
+        <section className="pastry-her-majesty editorial-frame" data-pastry-animate>
+          <div className="pastry-her-majesty-copy">
+            <h2 className="pastry-her-majesty-title pastry-reveal">{content.herMajestyCake.title}</h2>
+            {content.herMajestyCake.paragraphs.map((paragraph, index) => (
+              <p key={index} className="pastry-reveal">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="pastry-her-majesty-media pastry-reveal">
+            <img
+              src={content.herMajestyCake.image}
+              alt={content.herMajestyCake.imageAlt}
+              loading="lazy"
+            />
+          </div>
+        </section>
+      )}
+
+      {section === 'pastry' && content.playfulDessert && (
+        <section className="pastry-playful-dessert editorial-frame" data-pastry-animate>
+          <div className="pastry-playful-dessert-copy">
+            <h2 className="pastry-playful-dessert-title pastry-reveal">{content.playfulDessert.title}</h2>
+            <p className="pastry-reveal">{content.playfulDessert.body}</p>
+          </div>
+          <div className="pastry-playful-dessert-media pastry-reveal">
+            <img
+              src={content.playfulDessert.image}
+              alt={content.playfulDessert.imageAlt}
+              loading="lazy"
+            />
+          </div>
+          {content.playfulDessert.afterImageTitle && (
+            <h3 className="pastry-playful-dessert-tagline pastry-reveal">
+              {content.playfulDessert.afterImageTitle}
+            </h3>
+          )}
+        </section>
+      )}
+
+      {section === 'pastry' &&
+        content.playfulDessert?.trisSlides &&
+        content.playfulDessert.trisSlides.length > 0 && (
+          <section
+            className="pastry-tris-horizontal horizontal-section"
+            aria-label="Istruzioni per il Tris dolce"
+          >
+            <div
+              className="horizontal-container"
+              style={{ '--slide-count': content.playfulDessert.trisSlides.length }}
+            >
+              {content.playfulDessert.trisSlides.map((slide) => (
+                <article className="horizontal-item" key={slide.id} id={slide.id}>
+                  <div className="item-grid">
+                    <div className="item-text">
+                      <span className="label slide-reveal">{slide.label}</span>
+                      <p className="slide-reveal pastry-tris-slide-body">{slide.body}</p>
+                    </div>
+                    <div className="item-img">
+                      <img
+                        className="parallax-img"
+                        src={slide.image}
+                        alt={slide.alt}
+                        loading="lazy"
+                      />
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </section>
+        )}
+
+      {section === 'pastry' && content.monoporzioniShowcase && (
+        <section className="pastry-monoporzioni editorial-frame" data-pastry-animate>
+          <div className="pastry-monoporzioni-copy">
+            <h2 className="pastry-monoporzioni-title pastry-reveal">{content.monoporzioniShowcase.title}</h2>
+            {content.monoporzioniShowcase.paragraphs.map((paragraph, index) => (
+              <p key={index} className="pastry-reveal">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="pastry-monoporzioni-hero pastry-reveal">
+            <img
+              src={content.monoporzioniShowcase.image}
+              alt={content.monoporzioniShowcase.imageAlt}
+              loading="lazy"
+              onLoad={refreshScrollMetrics}
+            />
+          </div>
+        </section>
+      )}
+
+      {section === 'pastry' && content.cioccolatiniShowcase && (
+        <section className="pastry-cioccolatini editorial-frame" data-pastry-animate>
+          <div className="pastry-cioccolatini-copy">
+            <h2 className="pastry-cioccolatini-title pastry-reveal">{content.cioccolatiniShowcase.title}</h2>
+            <p className="pastry-reveal">{content.cioccolatiniShowcase.body}</p>
+          </div>
+        </section>
+      )}
+
+      {section === 'pastry' && content.chocolateLetter && (
+        <section className="pastry-chocolate-letter editorial-frame" data-pastry-animate>
+          <div className="pastry-chocolate-letter-copy">
+            <h2 className="pastry-chocolate-letter-title pastry-reveal">{content.chocolateLetter.title}</h2>
+            {content.chocolateLetter.paragraphs.map((paragraph, index) => (
+              <p key={index} className="pastry-reveal">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+          <div className="pastry-chocolate-letter-gallery">
+            {content.chocolateLetter.gallery.map((photo) => (
+              <figure className="pastry-chocolate-letter-figure pastry-reveal" key={photo.image}>
+                <img
+                  src={photo.image}
+                  alt={photo.alt}
+                  loading="lazy"
+                  onLoad={refreshScrollMetrics}
+                />
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {section === 'pastry' && content.soloPerVoiDaily && (
+        <section className="pastry-solo-per-voi editorial-frame" data-pastry-animate>
+          <div className="pastry-solo-per-voi-copy">
+            <h2 className="pastry-solo-per-voi-title pastry-reveal">{content.soloPerVoiDaily.title}</h2>
+            <p className="pastry-reveal">{content.soloPerVoiDaily.body}</p>
+          </div>
+          <div className="pastry-solo-per-voi-gallery">
+            {content.soloPerVoiDaily.gallery.map((photo) => (
+              <figure className="pastry-solo-per-voi-figure pastry-reveal" key={photo.image}>
+                <img
+                  src={photo.image}
+                  alt={photo.alt}
+                  loading="lazy"
+                  onLoad={refreshScrollMetrics}
+                />
+              </figure>
+            ))}
+          </div>
+          {content.soloPerVoiDaily.gamberoBadge && (
+            <div className="pastry-solo-per-voi-badge pastry-reveal">
+              <img
+                src={content.soloPerVoiDaily.gamberoBadge.image}
+                alt={content.soloPerVoiDaily.gamberoBadge.alt}
+                loading="lazy"
+                onLoad={refreshScrollMetrics}
+              />
+            </div>
+          )}
         </section>
       )}
     </main>
