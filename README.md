@@ -1,5 +1,8 @@
 # Caffe Nazionale - Stella di Paolo Griffa
 
+![Hero Section](preview.png)
+
+
 Sito vetrina/editoriale realizzato con React + Vite per `Caffetteria Pasticceria Stella di Paolo Griffa`, con pagine dedicate, animazioni GSAP, smooth scrolling Lenis, routing client-side e layout responsive desktop/mobile.
 
 ## Tech Stack Completo
