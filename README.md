@@ -153,3 +153,8 @@ npm run build
 ```
 
 Il progetto e statico (client-side SPA), deployabile su Vercel, Netlify, Cloudflare Pages o hosting statico equivalente.
+
+## License
+
+This project is proprietary and protected by copyright.
+Unauthorized use, reproduction, or distribution is prohibited.
